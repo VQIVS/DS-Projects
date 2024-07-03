@@ -13,54 +13,76 @@ import (
 	"DS-Projects/Skiplist"
 	"DS-Projects/TravelingSalesmanProblem"
 	"DS-Projects/Trie"
+
+	"github.com/fatih/color"
 )
 
 func main() {
-	clearScreen()
+	for {
+		clearScreen()
 
-	// Displaying options for running different topics
-	fmt.Println("Welcome to the Data Structures and Algorithms CLI!")
-	time.Sleep(1 * time.Second)
-	fmt.Println("Select a topic to run the example:")
-	time.Sleep(500 * time.Millisecond)
-	fmt.Println("1. Fibonacci Heap")
-	fmt.Println("2. Skiplist")
-	fmt.Println("3. Trie")
-	fmt.Println("4. Traveling Salesman Problem")
-	fmt.Println("5. Hash")
-	fmt.Println("6. 2-SAT")
-	fmt.Println("7. Segment Tree")
-	fmt.Println("8. MST")
+		// Displaying options for running different topics
+		color.Cyan("Welcome to the Data Structures and Algorithms CLI!")
+		time.Sleep(1 * time.Second)
+		color.Yellow("Select a topic to run the example:")
+		time.Sleep(500 * time.Millisecond)
+		fmt.Println("1. Fibonacci Heap")
+		fmt.Println("2. Skiplist")
+		fmt.Println("3. Trie")
+		fmt.Println("4. Traveling Salesman Problem")
+		fmt.Println("5. Hash")
+		fmt.Println("6. 2-SAT")
+		fmt.Println("7. Segment Tree")
+		fmt.Println("8. MST")
+		fmt.Println("9. Exit")
 
-	var choice int
-	fmt.Print("\nEnter your choice: ")
-	fmt.Scan(&choice)
+		var choice int
+		fmt.Print("\nEnter your choice: ")
+		fmt.Scan(&choice)
 
-	switch choice {
-	case 1:
-		runFibonacciHeapExamples()
-	case 2:
-		runSkiplistExamples()
-	case 3:
-		runTrieExamples()
-	case 4:
-		runTSPExamples()
-	case 5:
-		runHashExamples()
-	case 6:
-		runTwoSATExamples()
-	case 7:
-		runSegmentTreeExamples()
-	case 8:
-		runMSTExamples()
-	default:
-		fmt.Println("Invalid choice")
-		os.Exit(1)
+		if choice == 9 {
+			color.Green("Exiting the CLI. Goodbye!")
+			return
+		}
+
+		runExample(choice)
+	}
+}
+
+func runExample(choice int) {
+	for {
+		switch choice {
+		case 1:
+			runFibonacciHeapExamples()
+		case 2:
+			runSkiplistExamples()
+		case 3:
+			runTrieExamples()
+		case 4:
+			runTSPExamples()
+		case 5:
+			runHashExamples()
+		case 6:
+			runTwoSATExamples()
+		case 7:
+			runSegmentTreeExamples()
+		case 8:
+			runMSTExamples()
+		default:
+			color.Red("Invalid choice")
+			time.Sleep(1 * time.Second)
+			return
+		}
+
+		if !showBackOption() {
+			return
+		}
 	}
 }
 
 func runFibonacciHeapExamples() {
-	fmt.Println("\nRunning Fibonacci Heap examples...")
+	clearScreen()
+	color.Cyan("\nRunning Fibonacci Heap examples...")
 	time.Sleep(1 * time.Second)
 	FibonacciHeap.RunFibonacciHeap()
 	time.Sleep(1 * time.Second)
@@ -72,7 +94,8 @@ func runFibonacciHeapExamples() {
 }
 
 func runSkiplistExamples() {
-	fmt.Println("\nRunning Skiplist examples...")
+	clearScreen()
+	color.Cyan("\nRunning Skiplist examples...")
 	time.Sleep(1 * time.Second)
 	Skiplist.RunSkiplist()
 	time.Sleep(1 * time.Second)
@@ -82,7 +105,8 @@ func runSkiplistExamples() {
 }
 
 func runTrieExamples() {
-	fmt.Println("\nRunning Trie examples...")
+	clearScreen()
+	color.Cyan("\nRunning Trie examples...")
 	time.Sleep(1 * time.Second)
 	Trie.RunTrie()
 	time.Sleep(1 * time.Second)
@@ -94,7 +118,8 @@ func runTrieExamples() {
 }
 
 func runTSPExamples() {
-	fmt.Println("\nRunning Traveling Salesman Problem examples...")
+	clearScreen()
+	color.Cyan("\nRunning Traveling Salesman Problem examples...")
 	time.Sleep(1 * time.Second)
 	TravelingSalesmanProblem.RunTSP()
 	time.Sleep(1 * time.Second)
@@ -104,7 +129,8 @@ func runTSPExamples() {
 }
 
 func runHashExamples() {
-	fmt.Println("\nRunning Hash examples...")
+	clearScreen()
+	color.Cyan("\nRunning Hash examples...")
 	time.Sleep(1 * time.Second)
 	Hash.RunHash()
 	time.Sleep(1 * time.Second)
@@ -120,7 +146,8 @@ func runHashExamples() {
 }
 
 func runTwoSATExamples() {
-	fmt.Println("\nRunning 2-SAT examples...")
+	clearScreen()
+	color.Cyan("\nRunning 2-SAT examples...")
 	time.Sleep(1 * time.Second)
 	TwoSAT.RunBooleanSatisfiability()
 	time.Sleep(1 * time.Second)
@@ -128,7 +155,8 @@ func runTwoSATExamples() {
 }
 
 func runSegmentTreeExamples() {
-	fmt.Println("\nRunning Segment Tree examples...")
+	clearScreen()
+	color.Cyan("\nRunning Segment Tree examples...")
 	time.Sleep(1 * time.Second)
 	SegmentTree.RunSegmentTree()
 	time.Sleep(1 * time.Second)
@@ -138,7 +166,8 @@ func runSegmentTreeExamples() {
 }
 
 func runMSTExamples() {
-	fmt.Println("\nRunning Minimum Spanning Tree examples...")
+	clearScreen()
+	color.Cyan("\nRunning Minimum Spanning Tree examples...")
 	time.Sleep(1 * time.Second)
 	MST.RunMST()
 	time.Sleep(1 * time.Second)
@@ -149,6 +178,21 @@ func runMSTExamples() {
 	MST.RunDisjointSetUnion()
 	time.Sleep(1 * time.Second)
 	MST.RunFredmanTarjan()
+}
+
+func showBackOption() bool {
+	fmt.Println("\n1. Back to main menu")
+	fmt.Println("2. Exit")
+	var choice int
+	fmt.Print("Enter your choice: ")
+	fmt.Scan(&choice)
+	if choice == 1 {
+		return false
+	} else if choice == 2 {
+		color.Green("Exiting the CLI. Goodbye!")
+		os.Exit(0)
+	}
+	return true
 }
 
 func clearScreen() {
